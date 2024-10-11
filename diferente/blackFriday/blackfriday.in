@@ -1,0 +1,10 @@
+3
+8 15 200
+4 6 160
+
+
+inainte 100
+dupa    x
+
+
+x = dupa * 100 / inainte
