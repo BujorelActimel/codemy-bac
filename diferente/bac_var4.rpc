@@ -1,0 +1,12 @@
+citeste n
+s<-1
+cat timp n > 0 repeta
+    daca n%10 > s atunci
+      s<-n%10
+    altfel
+     s<-11
+    sf
+
+    n <- [n/10]
+sf
+scrie s
