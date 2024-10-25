@@ -1,0 +1,17 @@
+412531 -> 43141
+
+1111  -> 11111
+11011
+111
+
+
+┌cât timp n>9 execută
+│┌dacă x=-1 atunci xn%100
+││altfel yn%100
+│└■
+│ n[n/10]
+└■
+daca n>9
+repeta 
+....
+pana cand n <= 9

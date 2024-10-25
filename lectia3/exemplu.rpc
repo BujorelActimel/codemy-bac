@@ -1,0 +1,21 @@
+citeste n
+m<-10
+daca n=0 atunci
+    m<-0
+altfel
+    c<-n%10
+    n=[n/10]
+    daca c<=m atunci 
+        m<-c
+    altfel m <- -1
+    sf
+    cat timp n != 0 repeta
+        c<-n%10
+        n=[n/10]
+        daca c<=m atunci 
+            m<-c
+        altfel m <- 0
+        sf
+    sf
+sf
+scrie m
