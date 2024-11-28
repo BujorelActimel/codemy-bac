@@ -1,76 +1,88 @@
-// A = (0 0 0
-//      1 1 2 
-//      0 0 0)
-// 3
-// (2 1 1)
-// (2 2 1)
-// (2 3 2)
-
-// B = (0 0 0
-//      1 1 2 
-//      0 0 0)
-// 3
-// (2 1 1)
-// (2 2 1)
-// (2 3 2)
-
-
-// C = (0 0 0
-//      2 2 4 
-//      0 0 0)
-// 3
-// (2 1 2)
-// (2 2 2)
-// (2 3 4)
-#include <iostream>
 #include <fstream>
 
 using namespace std;
+
+// structura triplet retine coordonatele 
+// x si y a unui element din matrice 
+// si valoarea de la pozitia respectiva
+struct Triplet {
+    int x, y, valoare;
+};
 
 int main() {
     ifstream fin("matrice_rara.in");
     ofstream fout("matrice_rara.out");
 
-    int n, m;
-    fin >> n >> m;
+    int n, m, N1, N2;
+    fin >> n >> m >> N1 >> N2;
 
-    int N1, N2;
-    fin >> N1 >> N2;
+    // A, B si Rez sunt vectori de Triplete
+    Triplet* A = new Triplet[N1];
+    Triplet* B = new Triplet[N2];
+    Triplet* Rez = new Triplet[N1 + N2];
 
-    int A[n][m] = {0}, B[n][m] = {0};
-
+    // citesc tripletele din A
     for (int i = 0; i < N1; i++) {
-        int x, y, valoare;
-        fin >> x >> y >> valoare;
-        A[x-1][y-1] = valoare;
+        fin >> A[i].x >> A[i].y >> A[i].valoare;
     }
 
+    // citesc tripletele din B
     for (int i = 0; i < N2; i++) {
-        int x, y, valoare;
-        fin >> x >> y >> valoare;
-        B[x-1][y-1] = valoare;
+        fin >> B[i].x >> B[i].y >> B[i].valoare;
     }
 
-    int Rez[n][m] = {0};
-    int dif_0 = 0;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            Rez[i][j] = A[i][j] + B[i][j];
-            if (Rez[i][j] != 0) {
-                dif_0++;
+    // parcurg tripletele in stil de interclasare
+    int NRez = 0;
+    int i = 0, j = 0;
+    while (i < N1 && j < N2) {
+        // daca elementul din A are poz 
+        // diferita si e inainte de cel din B
+        if (A[i].x < B[j].x || (A[i].x == B[j].x && A[i].y < B[j].y)) {
+            Rez[NRez] = A[i];
+            NRez++;
+            i++;
+        }
+        // daca elementul din A are poz 
+        // diferita si e dupa cel din B
+        else if (A[i].x > B[j].x || (A[i].x == B[j].x && A[i].y > B[j].y)) {
+            Rez[NRez] = B[j];
+            NRez++;
+            j++;
+        }
+        // daca elementul din A are a
+        // ceeasi pozitie cu cel din B
+        else {
+            int suma = A[i].valoare + B[j].valoare;
+            if (suma != 0) {
+                Rez[NRez] = {A[i].x, A[i].y, suma};
+                NRez++;
             }
+            i++;
+            j++;
         }
     }
 
-    fout << dif_0 << '\n';
+    // elementele ramase
+    while (i < N1) {
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            if (Rez[i][j] != 0) {
-                fout << i+1 << ' ' << j+1 << ' ' << Rez[i][j] << '\n';
-            }
-        }
+        Rez[NRez] = A[i];
+        NRez++;
+        i++;
     }
+    while (j < N2) {
+        Rez[NRez] = B[j];
+        NRez++;
+        j++;
+    }
+
+    fout << NRez << '\n';
+    for (int k = 0; k < NRez; k++) {
+        fout << Rez[k].x << ' ' << Rez[k].y << ' ' << Rez[k].valoare << '\n';
+    }
+
+    delete[] A;
+    delete[] B;
+    delete[] Rez;
+
     return 0;
 }
