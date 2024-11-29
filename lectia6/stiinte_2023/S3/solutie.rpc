@@ -1,0 +1,28 @@
+citeste n
+
+suma_n <- 0
+raspuns <- 1
+
+pentru d <- 1, n executa
+    daca n % d = 0 atunci
+        suma_n <- suma_n + d
+    sf
+sf
+
+s_n <- [suma_n / n]
+
+pentru k <- 1, n-1 executa
+    suma_k <- 0
+    pentru d <- 1, n executa
+        daca k % d = 0 atunci
+            suma_k <- suma_k + d
+        sf
+    sf
+    s_k <- [suma_k / k]
+
+    daca s_n <= s_k atunci
+        raspuns <- 0
+    sf
+sf
+
+scrie raspuns
