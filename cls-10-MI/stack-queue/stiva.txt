@@ -1,0 +1,10 @@
+push - adauga element in varful stivei
+
+pop - scoate element din varful stivei
+
+s.push(3) // acum stiva arata asa: 3
+
+s.push(4) // acum stiva arata asa: 4
+                                   3
+
+s.pop()   // acum stiva arata: 3
