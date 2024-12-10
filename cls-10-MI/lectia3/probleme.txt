@@ -1,0 +1,7 @@
+Structuri:
+    - 922    DONE
+    - 1013   DONE
+
+Stack/Queue:
+    - 878    DONE
+    - 848    DONE
