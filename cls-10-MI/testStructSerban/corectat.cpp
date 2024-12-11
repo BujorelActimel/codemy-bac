@@ -23,15 +23,20 @@ int main()
     int punctmaxOy=0;
     int punctmaxOXEGALE=0;
     int punctmaxOYEGALE=0;
+
+    Coordonate c[100];
+
     for (int i=0; i<n; i++){
         cin>>coordonate.x>>coordonate.y;
+        c[i] = coordonate;
         if(coordonate.y==0){
             apartinAbscisei++;
         }
     }
     cout<<"Raspunsul punctului a este: "<<apartinAbscisei<<endl;
+    
     for (int i=0; i<n; i++){
-        cin>>coordonate.x>>coordonate.y;    // deja ai citit coordonatele mai sus
+        coordonate = c[i];
         if (((coordonate.x)*(coordonate.x)+(coordonate.y)*(coordonate.y) )== distantaMax){
             punctmaxOXEGALE=punctmaxOX;
             punctmaxOYEGALE=punctmaxOy;
@@ -46,21 +51,22 @@ int main()
          cout<<"Pentru punctul b raspunsul sunt punctele: "<<punctmaxOX<<" "<<punctmaxOy<<"Dar si "<<punctmaxOXEGALE<<" "<<punctmaxOYEGALE<<endl;
     }
     else{
-        cout<<"Pentru punctul b raspunsul sunt punctele: "<<punctmaxOX<<" "<<punctmaxOy;
+        cout<<"Pentru punctul b raspunsul sunt punctele: "<<punctmaxOX<<" "<<punctmaxOy<<endl;
     }
-  for (int i=0; i<n; i++){
-      cin>>coordonate.x>>coordonate.y;   // la fel
-        for (int j=i; j<=n; j++){        // de la i + 1
-            cin>>coordUrm.x>>coordUrm.y;  // la fel
+  for (int i=0; i<n-1; i++){
+        coordonate = c[i];
+        for (int j=i+1; j<n; j++){
+            coordUrm = c[j];
             if(coordUrm.x*coordUrm.x+coordUrm.y*coordUrm.y < coordonate.x*coordonate.x+coordonate.y*coordonate.y){
-                swap(coordonate.x,coordUrm.x);   // le schimbi o data
-                swap(coordonate.y,coordUrm.y);   // si dupa le schimbi iar???
+                swap(c[i],c[j]);
             }
         }
     }
     cout<<"Raspunsul punctului c este: ";
     for (int i=0; i<n; i++){
-        cout<<coordonate.x<<" "<<coordonate.y;
+        coordonate = c[i];
+        cout<<"("<<coordonate.x<<" "<<coordonate.y<<"), ";
     }
+    cout << endl;
     return 0;
 }
