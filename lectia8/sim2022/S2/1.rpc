@@ -1,0 +1,16 @@
+citeste n,x // (numere naturale nenule)
+nr <- 0
+i <- 1
+pentru i<-1, n repeta
+    citeste y // (numar natural)
+
+    cat timp y!=0 SI y%2!=x%2 executa
+        y<-[y/10]
+    sf
+    daca y=x atunci 
+        nr<-nr+1
+    sf
+sf
+scrie nr
+
+// 2, 22, 2233, 2235
