@@ -9,27 +9,34 @@ int main() {
 
     int i = 0;
 
+    // Elimina spatiile de la inceput
     while (sir[i] == ' ') {
         i++;
     }
 
-    strcpy(sir, sir+i);
+    strcpy(sir, sir + i);
 
     i = 0;
+    int j = 0;
+    bool in_word = false;
 
-    while (i < strlen(sir)) {
-        while (sir[i] != ' ' && sir[i] != '\0') {
-            i++;
-        }
-        int j = i+1;
-        while (sir[j] == ' ') {
-            j++;
-        }
-        if (sir[i] == ' ') {
-            strcpy(sir + i + 1, sir + j);
+    while (sir[i] != '\0') {
+        if (sir[i] != ' ') {
+            sir[j++] = sir[i];
+            in_word = true;
+        } else if (in_word) {
+            sir[j++] = ' ';
+            in_word = false;
         }
         i++;
     }
+
+    // Elimina spatiul suplimentar de la sfarsit, daca exista
+    if (j > 0 && sir[j - 1] == ' ') {
+        j--;
+    }
+
+    sir[j] = '\0';
 
     cout << sir << '\n';
 

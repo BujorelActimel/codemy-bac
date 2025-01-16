@@ -7,7 +7,7 @@ int main() {
 
     char nume[21];
     char prenume[21];
-    char rezultat[41];
+    char rezultat[42];
 
     char vocale[] = "aeiouAEIOU";
     int k = 0;
@@ -19,6 +19,8 @@ int main() {
             rezultat[k++] = prenume[i];
         }
     }
+
+    rezultat[k] = '\0'; // trebuia adaugat \0 la rezultat inainte de a face strcat-urile
 
     strcat(rezultat, " ");
     strcat(rezultat, nume);
