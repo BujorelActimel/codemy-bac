@@ -1,0 +1,4 @@
+pbinfo: - 288
+        - 502 (vector frecventa)
+        - 503
+        - 505 (vector frecventa, sortare)
