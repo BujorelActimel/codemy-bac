@@ -1,6 +1,5 @@
 #include <fstream>
 #include <iostream>
-
 #include <vector>
 
 using namespace std;
@@ -35,7 +34,6 @@ void solve1() {
     }
 
     int Max = -1;
-
     bool continePrimul = false;
 
     for (int i = 0; i <= k; i++) {
@@ -76,97 +74,65 @@ void solve1() {
     fout << Max;
 }
 
-struct Interval {
-    int startIndex;
-    int endIndex;
-
-    Interval(int stIndx, int endIndx) {
-        startIndex = stIndx;
-        endIndex = endIndx;
-    }
-
-    bool contains(int index) {
-        return index >= startIndex && index <= endIndex;
-    }
-};
-
-struct Peak {
-    int height;
-    bool marked;
-};
-
-vector<Interval> getAllIntervals(vector<Peak> peaks, int k) {
-    vector<Interval> intervals;
-
-    for (int i = 0; i < peaks.size(); i++) {
-        int startIndex = i-k;
-        // stanga
-        for (int j = i - 1; j >= i - k; j--) {
-            if (j < 0) {
-                startIndex = 0;
-                break;
-            }
-            if (peaks[j].height > peaks[i].height) {
-                startIndex = j + 1;
-                break;
-            }
-        }
-
-        int endIndex = i+k;
-        // dreapta
-        for (int j = i + 1; j <= i + k; j++) {
-            if (j >= peaks.size()) {
-                endIndex = peaks.size() - 1;
-                break;
-            }
-            if (peaks[j].height > peaks[i].height) {
-                endIndex = j - 1;
-                break;
-            }
-        }
-
-        intervals.push_back(Interval(startIndex, endIndex));
-    }
-
-    return intervals;
-}
-
-Interval bestInterval(vector<Interval> intervals, int index) {
-    Interval result(-1, -1);
-    for (auto interval : intervals) {
-        if (interval.startIndex <= index && interval.endIndex > result.endIndex) {
-            result = interval;
-        }
-    }
-
-    return result;
-}
-
 void solve2() {
     int n, k;
     fin >> n >> k;
-    vector<Peak> peaks(n);
+    vector<int> heights(n);
     for (int i = 0; i < n; i++) {
-        fin >> peaks[i].height;
-        peaks[i].marked = false;
+        fin >> heights[i];
     }
 
-    // genereaza toate intervalele
-    auto intervals = getAllIntervals(peaks, k);
-
-    int santinele = 0;
-
-    for (int i = 0; i < peaks.size(); i++) {
-        if (!peaks[i].marked) {
-            auto interval = bestInterval(intervals, i);
-            for (int j = interval.startIndex; j <= interval.endIndex; j++) {
-                peaks[j].marked = true;
+    // Pentru fiecare poziție, calculăm de unde poate începe și până unde poate vedea o santinelă
+    vector<int> maxEnd(n);
+    vector<int> minStart(n);
+    for (int i = 0; i < n; i++) {
+        // Calculăm startul minim (mergem la stânga până găsim un vârf mai mare sau ajungem la k pași)
+        int start = max(0, i-k);
+        for (int j = i-1; j >= max(0, i-k); j--) {
+            if (heights[j] > heights[i]) {
+                start = j + 1;
+                break;
             }
-            santinele++;
         }
+        minStart[i] = start;
+
+        // Calculăm sfârșitul maxim (mergem la dreapta până găsim un vârf mai mare sau ajungem la k pași)
+        int end = min(n-1, i+k);
+        for (int j = i+1; j <= min(n-1, i+k); j++) {
+            if (heights[j] > heights[i]) {
+                end = j - 1;
+                break;
+            }
+        }
+        maxEnd[i] = end;
     }
 
-    // cout << santinele << '\n';
+    // Găsim numărul minim de santinele folosind algoritmul greedy
+    int santinele = 0;
+    int pozCurenta = 0;
+    
+    while (pozCurenta < n) {
+        // Găsim santinela care poate acoperi pozCurenta și merge cel mai departe
+        int bestEnd = -1;
+        int bestPos = -1;
+        
+        // Căutăm printre toate santinelele care pot vedea pozCurenta
+        for (int i = max(0, pozCurenta-k); i <= min(n-1, pozCurenta+k); i++) {
+            if (minStart[i] <= pozCurenta && maxEnd[i] > bestEnd) {
+                bestEnd = maxEnd[i];
+                bestPos = i;
+            }
+        }
+
+        if (bestPos == -1) {
+            // Nu am găsit nicio santinelă validă
+            fout << "-1\n";
+            return;
+        }
+
+        santinele++;
+        pozCurenta = bestEnd + 1;
+    }
 
     fout << santinele;
 }
