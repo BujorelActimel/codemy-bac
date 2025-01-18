@@ -97,7 +97,7 @@ int main() {
 
         while (!allMarked(marcat, n)) {
             int maxPeakPosition = getRemainingMaxPeakPosition(a, marcat, n);
-            for (int i = maxPeakPosition-k; i <= maxPeakPosition+k; i++) {
+            for (int i = max(0, maxPeakPosition-k); i <= min(n-1, maxPeakPosition+k); i++) {
                 marcat[i] = 1;
             }
             santinele++;
