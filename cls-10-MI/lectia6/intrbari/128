@@ -1,0 +1,4 @@
+s = muratmurat
+0x23        
+
+s==strstr(s, s+5)
