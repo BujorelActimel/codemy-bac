@@ -69,8 +69,7 @@ int main() {
     }
 
     // b) sa se determine toate sufixele sirului
-    // i reprezinta unde se termina prefixul curent
-    // j reprezinta indexii de la 0 la i-ul curent
+    // i reprezinta unde incepe sufixul curent
     for (int i = strlen(s)-1; i >= 0; i--) {
         cout << s + i << ' ';
     }
