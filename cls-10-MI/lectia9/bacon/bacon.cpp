@@ -37,14 +37,21 @@ int main() {
         }
     }
     else { // decodificam
-        // TEMA
+        for (int j = 0; j <= strlen(text)-5; j += 5) {
+            int putere2 = 1;
+            int numar = 0;
+
+            char s[6] = {0};
+            strncpy(s, text+j, 5);
+
+            for (int i = strlen(s)-1; i >= 0; i--) {
+                numar += putere2 * (s[i]-'A');
+                putere2 *= 2;
+            }
+
+            fout << char('A' + numar);
+        }
     }
 
     return 0;
 }
-
-// 13 : 2 = 6, rest 1
-// 6 : 2 = 3, rest 0
-// 3 : 2 = 1 rest 1
-// 1 : 2 = 0, rest 1
-// 0 stop
