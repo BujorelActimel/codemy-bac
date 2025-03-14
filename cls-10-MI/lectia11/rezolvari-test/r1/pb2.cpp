@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int distinct(char s[]) {
+bool distinct(char s[]) {
     int frecv[27] = {0};
     for (int i = 0; i < strlen(s); i++) {
         int pozitie = s[i] - 'a';

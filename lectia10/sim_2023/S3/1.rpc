@@ -1,0 +1,18 @@
+citeste x, y
+
+rez <- 0
+
+pentru i<-x, y repeta
+    div <- 0
+    pentru j<-1, i, 2 repeta
+        daca i % j = 0 atunci
+            div <- div + 1
+        sf
+    sf
+    daca div = 3 atunci
+        // scrie i
+        rez <- rez + 1
+    sf
+sf
+
+scrie rez

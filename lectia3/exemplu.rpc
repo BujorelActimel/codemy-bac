@@ -1,21 +1,18 @@
-citeste n
-m<-10
-daca n=0 atunci
-    m<-0
-altfel
-    c<-n%10
-    n=[n/10]
-    daca c<=m atunci 
-        m<-c
-    altfel m <- -1
+scrie 'Valoarea numarului: '
+citeste numar
+
+i <- 1
+nr_div <- 0
+
+cat timp i <= numar repeta
+    daca numar % i = 0 atunci
+        nr_div <- nr_div + 1
     sf
-    cat timp n != 0 repeta
-        c<-n%10
-        n=[n/10]
-        daca c<=m atunci 
-            m<-c
-        altfel m <- 0
-        sf
-    sf
+    i <- i + 1
 sf
-scrie m
+
+daca nr_div = 2 atunci
+    scrie 'Este prim'
+altfel
+    scrie 'NU este prim'
+sf
