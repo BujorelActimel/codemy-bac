@@ -1,0 +1,20 @@
+citeste m, n
+
+daca m < n atunci
+    n<-n+m
+    m<-n-m
+    n<-n-m
+sf
+
+k <- m
+
+i<-m
+cat timp i >= n executa
+    scrie k, ' '
+    daca i%2=0 atunci
+        k<-k-1
+        scrie '*'
+    sf
+    k<-k-1
+    i<-i-1
+sf

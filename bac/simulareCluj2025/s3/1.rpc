@@ -1,0 +1,31 @@
+citeste a, b
+
+rezultat <- 1
+
+pentru cif <- 0, 9 executa
+    copie_a <- a
+    copie_b <- b
+
+    contine_a <- 0
+    contine_b <- 0
+
+    cat timp copie_a > 0 executa
+        daca copie_a % 10 = cif atunci
+            contine_a <- 1
+        sf  
+        copie_a <- [contine_a / 10]
+    sf
+
+    cat timp copie_b > 0 executa
+        daca copie_b % 10 = cif atunci
+            contine_b <- 1
+        sf  
+        copie_b <- [contine_b / 10]
+    sf
+
+    daca contine_a != contine_b atunci
+        rezultat <- 0
+    sf
+sf
+
+scrie rezultat

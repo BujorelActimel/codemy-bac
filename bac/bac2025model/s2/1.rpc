@@ -1,0 +1,16 @@
+citeste n, x, y
+//  (numere naturale nenule, x≤n, y≤n)
+nr<-0
+i <- n
+cat timp i>=1 repeta
+    daca i%x=0 SI i%y!=0 atunci
+        nr<-nr+1
+    altfel
+        daca i%x!=0 SI i%y=0 atunci
+            nr<-nr+1
+        sf
+    sf
+    i <- i - 1
+sf
+
+scrie nr
