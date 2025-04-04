@@ -1,0 +1,17 @@
+citeste k
+
+i <- k
+
+cat timp i > 0 executa
+    copie <- i
+    s <- 0
+    cat timp copie != 0 executa
+        s <- s + copie % 10
+        copie <- [copie / 10]
+    sf
+    daca i % s = 0 atunci
+        scrie i
+        i = 0
+    sf
+    i <- i-1
+sf
