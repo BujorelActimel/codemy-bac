@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Workable//Calendar
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VEVENT
+DTSTAMP:20250408T223026Z
+UID:faxisra63n14udbbf_bc_se-y_bks0dj
+DTSTART:20250416T100000Z
+DTEND:20250416T103000Z
+DESCRIPTION:\nThis event has a video call.\nJoin: https://meet.google.com/z
+ xn-fuvm-dfh\n
+LOCATION:https://meet.google.com/zxn-fuvm-dfh
+ORGANIZER;CN=Winnow:mailto:c4e69apqk7e9w@events.workablemail.com
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Interview for Summer intern - Backend Developer (2025/2026 graduate
+ s) job at Winnow
+TRANSP:OPAQUE
+URL:http://www.workable.com/events/faxisra63n14udbbf_bc_se-y_bks0dj
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;RSVP=TRUE;PARTSTAT=ACCEPTED
+ ;X-RESPONSE-COMMENT=;CN=Mihai Alexandru Bujor:mailto:bujormihaialexandru@g
+ mail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;RSVP=TRUE;PARTSTAT=ACCEPTED
+ ;CN=Malina Crudu:mailto:malina.crudu@winnowsolutions.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;RSVP=TRUE;PARTSTAT=ACCEPTED
+ ;CN=Nicolae Moisa:mailto:nicolae.moisa@winnowsolutions.com
+END:VEVENT
+END:VCALENDAR
